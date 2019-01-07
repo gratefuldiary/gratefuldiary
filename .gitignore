@@ -8,3 +8,5 @@ default.yml
 package-lock.json
 
 TODO.md
+
+email.configure.js

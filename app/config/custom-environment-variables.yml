@@ -2,6 +2,7 @@ env: NODE_ENV
 email:
     sparkpost:
         key: SPARKPOST_API_KEY
+        webhook: SPARKPOST_API_WEBHOOK
     encryption:
         key: EMAIL_ENCRYPTION_KEY
 logging:
@@ -20,3 +21,4 @@ auth:
 chargebee:
     site: CHARGEBEE_SITE
     key: CHARGEBEE_API_KEY
+    webhook: CHARGEBEE_WEBHOOK

@@ -1,3 +1,4 @@
+import config from 'config'
 import express from 'express'
 import * as models from '../models'
 import * as services from '../services'
@@ -5,7 +6,9 @@ import * as utils from '../utils'
 
 const router = express.Router()
 
-router.post('/email', (req, res, next) => {
+const webhook = config.email.sparkpost.webhook || ''
+
+router.post(`/email/{webhook}`, (req, res, next) => {
 
     const data = req.body || {}
 

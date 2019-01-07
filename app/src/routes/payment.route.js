@@ -36,7 +36,7 @@ router.post('/chargebee/generate_checkout_new_url', services.Middleware.secured(
     res.send(hp.hosted_page)
 })
 
-router.post('/chargebee/webhook', async (req, res) => {
+router.post(`/chargebee/webhook/${config.chargebee.webhook}`, async (req, res) => {
     const webhook = req.body
 
     if (webhook && webhook.event_type && ['subscription_created', 'subscription_changed', 'subscription_cancelled', 'subscription_renewed', 'subscription_deleted'].includes(webhook.event_type)) {

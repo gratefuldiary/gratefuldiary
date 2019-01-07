@@ -144,7 +144,6 @@ if (require.main === module) {
             log('Oopsie', err)
         })
 
-    // MORE: https://gist.github.com/0848fe8482d3416f1cbecb68cda452bf
     let e = encrypt(`I am hopeful to push these udpates soon
         and what do I expect for new lines?
 
