@@ -8,7 +8,7 @@ const router = express.Router()
 
 const webhook = config.email.sparkpost.webhook || ''
 
-router.post(`/email/{webhook}`, (req, res, next) => {
+router.post(`/email/${webhook}`, (req, res, next) => {
 
     const data = req.body || {}
 
