@@ -9,7 +9,7 @@
         "validate-fix": "./node_modules/.bin/eslint \"**/*.js\" --fix",
         "validate": "./node_modules/.bin/eslint \"**/*.js\"",
         "start-dev": "./node_modules/.bin/babel-watch -- server.js --debug",
-        "test": "npm run validate"
+        "test": "yarn run validate"
     },
     "dependencies": {
         "@sentry/node": "4.4.2",
@@ -34,6 +34,7 @@
         "express-session": "^1.15.6",
         "helmet": "^3.1.0",
         "http-status": "^0.2.3",
+        "js-yaml": "^3.12.1",
         "mailparser": "^2.1.0",
         "moment": "^2.23.0",
         "moment-timezone": "^0.5.23",

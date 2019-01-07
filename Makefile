@@ -8,7 +8,7 @@ install:
 	cd app && yarn install && cd ..
 
 test:
-	cd app && npm run test && cd ..
+	cd app && yarn run test && cd ..
 
 validate:
-	cd app && npm run validate && cd ..
+	cd app && yarn run validate && cd ..
