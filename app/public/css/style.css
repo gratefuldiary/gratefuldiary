@@ -1,0 +1,102 @@
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+button,
+li {
+    font-family: 'Lora', sans-serif;
+    color: #0a0a0a;
+
+}
+
+body {
+    height: 100%;
+    min-height: 100%;
+    font-family: 'Lora', sans-serif;
+}
+
+h1 {
+    font-size: 3.6rem;
+    font-weight: normal;
+    line-height: 3.4rem;
+    color: #0a0a0a;
+}
+
+h2 {
+    font-size: 3rem;
+    color: #666;
+    font-weight: normal;
+    line-height: 3.6rem;
+}
+
+h3 {
+    font-size: 2.8rem;
+    color: #0a0a0a;
+    line-height: 3.8rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+    color: #0a0a0a;
+    line-height: 2.3rem;
+}
+
+h5 {
+    font-size: 1.5rem;
+    color: #0a0a0a;
+    line-height: 2.2rem;
+}
+
+input,
+option,
+label,
+.label,
+p,
+li {
+    font-size: 1.25rem;
+    line-height: 2.2rem;
+    color: #0a0a0a;
+}
+
+a {
+    line-height: inherit;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.container {
+    margin-bottom: 250px;
+    min-height: 100%;
+    width: 100%;
+}
+
+.info {
+    font-size: 1.2rem;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.header {
+    font-size: 1.2rem;
+}
+
+.label-header {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.form-text {
+    display: inline;
+}

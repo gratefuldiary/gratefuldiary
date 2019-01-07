@@ -1,0 +1,22 @@
+env: NODE_ENV
+email:
+    sparkpost:
+        key: SPARKPOST_API_KEY
+    encryption:
+        key: EMAIL_ENCRYPTION_KEY
+logging:
+    sentry:
+        key: SENTRY_KEY
+db:
+    mongodb:
+        url: MONGODB_URL
+        pool_size: MONGODB_POOLSIZE
+auth:
+    session_secret: HTTP_SESSION_SECRET
+    domain: AUTH0_DOMAIN
+    clientID: AUTH0_CLIENTID
+    clientSecret: AUTH0_CLIENTSECRET
+    callbackURL: AUTH0_CALLBACKURL
+chargebee:
+    site: CHARGEBEE_SITE
+    key: CHARGEBEE_API_KEY

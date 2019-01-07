@@ -1,0 +1,134 @@
+extends layout.pug
+
+block content
+	<div class="row mx-1">
+		<form class="col-lg-8 pl-0" action="/users/account" method="POST" role="form">
+			if message 
+				<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+					| #{message}
+				</div>
+			<div class="form-group">
+				<label class="label-header" for="first_name">First name</label>
+				<input type="text" value="#{user.first_name}" name="first_name" class="form-control" id="first_name">
+			</div>
+			<div class="form-group">
+				<label class="label-header" for="last_name">Last name</label>
+				<input type="text" value="#{user.last_name}" name="last_name" class="form-control" id="last_name">
+			</div>
+
+			<div class="form-group">
+				<label class="label-header" for="timezone">Timezone</label>
+				<p> Your current timezone is #{user.config.timezone}. </p>
+				<select class="form-control" id="timezone" name="timezone">
+					each timezone in timezones
+						if (timezone === user.config.timezone)
+							<option value="#{timezone}" selected> #{timezone} </option>
+						else 
+							<option value="#{timezone}"> #{timezone} </option>
+				</select>
+			</div>
+
+			<div class="form-group pl-0">
+				<label class="label-header" for="schedule">Schedule</label>
+
+				<p> We are sending you emails at #{user.config.send_at}: </p>
+				<select class="form-control mb-2" id="send_at" name="send_at">
+					each send_at in send_ats
+						if (send_at === user.config.send_at)
+							<option value="#{send_at}" selected> #{send_at} </option>
+						else
+							<option value="#{send_at}"> #{send_at} </option>
+				</select>
+
+				<p> We are sending you emails on: </p>
+				<div class="form-check form-check-inline">
+					if (user.config.monday)
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="monday" id="monday" checked="checked">
+					else
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="monday" id="monday">
+					<label class="form-check-label pl-1 pr-3" for="monday">Monday</label>
+
+					if (user.config.tuesday)
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="tuesday" id="tuesday" checked="checked">
+					else
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="tuesday" id="tuesday">
+					<label class="form-check-label pl-1 pr-3" for="tuesday">Tuesday</label>
+
+					if (user.config.wednesday)
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="wednesday" id="wednesday" checked="checked">
+					else
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="wednesday" id="wednesday">
+					<label class="form-check-label pl-1 pr-3" for="wednesday">Wednesday</label>
+
+					if (user.config.thursday)
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="thursday" id="thursday" checked="checked">
+					else
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="thursday" id="thursday">
+					<label class="form-check-label pl-1 pr-3" for="thursday">Thursday</label>
+
+					if (user.config.friday)
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="friday" id="friday" checked="checked">
+					else
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="friday" id="friday">
+					<label class="form-check-label pl-1 pr-3" for="friday">Friday</label>
+
+				</div>
+				<div class="form-check form-check-inline">
+					</br>
+					if (user.config.saturday)
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="saturday" id="saturday" checked="checked">
+					else
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="saturday" id="saturday">
+					<label class="form-check-label pl-1 pr-3" for="saturday">Saturday</label>
+
+					if (user.config.sunday)
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="sunday" id="sunday" checked="checked">
+					else
+						<input class="form-check-input pl-1" type="checkbox" value="true" name="sunday" id="sunday">
+					<label class="form-check-label pl-1 pr-3" for="sunday">Sunday</label>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="label-header">Subscription</label>
+				<p> <a href="javascript:void(0)" id="portal"> Manage subscription </a> </p>
+			</div>
+
+			<div class="form-group">
+				<label class="label-header" >Support <small class="form-text text-muted"> We are building more features, help us :)</small></label>
+				<p><a href="mailto:gaurav@support.gratefuldiary.co"> Email us </a></p>
+			</div>
+
+			<button type="submit" class="btn btn-outline-primary mb-2">Update</button>
+		</form>
+
+
+	</div>
+
+	script.
+
+		$(document).ready(() => {
+		  	/* Initialize a Chargebee instance after mounting the root component. */
+		  	let chargebeeInstance = Chargebee.init({
+		  		site: "#{chargebee.site}"
+			})
+
+			chargebeeInstance.setPortalSession(() => {
+			  	return $.ajax({
+			    	url: '/chargebee/generate_portal_session',
+			    	method: 'POST'
+			  	})
+			})
+
+			let cbPortal = chargebeeInstance.createChargebeePortal()
+
+			$("#portal").on("click", () => {
+				cbPortal.open({
+				  	close() {
+				    	//close callbacks
+				  	}
+				})
+			})
+
+		})

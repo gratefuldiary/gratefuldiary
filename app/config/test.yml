@@ -1,0 +1,11 @@
+env: 'test'
+email:
+    sparkpost:
+        key: sparkpost_dev
+logging:
+    sentry:
+        key: sentry_dev
+db:
+    mongodb:
+        url: mongodb://localhost:27017/gratefuldiary
+        pool_size: 1

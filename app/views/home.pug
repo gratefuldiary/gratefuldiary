@@ -1,0 +1,90 @@
+extends layout.pug
+
+
+block content
+
+	<div class="row mx-1">
+
+		if typeof quotes === "object" && quotes.length > 0
+			<h2 class="mt-1 mb-4 font-italic"> #{quotes[Math.floor(Math.random() * quotes.length)]} </h2>
+
+		if typeof logs === "object" && logs.length > 0
+			<div class="row col-lg-12 mt-2 mx-0">
+				each log in logs
+					<div class="card col-lg-12 mb-2">
+						| <i class="pt-2"> #{moment(log.created_at).from()}, you wrote: </i>
+						<!-- <div class="card-body my-0 pt-2" style="white-space: pre-line" -->
+						<div class="card-body my-0 pt-2">
+							| #{log.text}
+						</div>
+					</div>
+			</div>
+		else
+			<div class="row col-lg-12 mt-2">
+				| <p> Welcome <i> #{user.first_name}</i>. &nbsp;</p> <br/>
+				| <p> We have sent you an email for you to get started. </p><span class="small"> Its likely that the email could land up in your <i> Updates </i> Folder. You might have to whitelist our domain with your mail app.</span>
+			</div>
+
+	</div>
+
+	<div class="modal fade" id="subscription_modal" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body center">
+					<p> Thanks for being an early user 😃 </p>
+					<p> Use the coupon code "GAURAV" to get a 20% discount. If you feel this is not useful, I'd love to hear from you and will give you a refund. </p>
+					<button type="button" class="mx-2 btn btn-outline-primary btn-lg" id="quarterly">Quarterly</button>
+					<button type="button" class="mx-2 btn btn-outline-primary btn-lg" id="yearly">Yearly</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	script.
+
+		$(document).ready(() => {
+			/* Initialize a Chargebee instance after mounting the root component. */
+			let chargebeeInstance = Chargebee.init({
+				site: "#{chargebee.site}"
+			})
+
+			$("#quarterly").on("click", () => {
+				$('#subscription_modal').modal('hide')
+				chargebeeInstance.openCheckout({
+					hostedPage: function() {
+						return $.ajax({
+							url: '/chargebee/generate_checkout_new_url',
+							data: {
+								plan: "quarterly"
+							},
+							method: 'POST'
+						})
+					},
+					success: function(hostedPageId) {
+						console.log('quarterly', hostedPageId)
+					}
+				})
+			})
+
+			$("#yearly").on("click", () => {
+				$('#subscription_modal').modal('hide')
+				chargebeeInstance.openCheckout({
+					hostedPage: function() {
+						return $.ajax({
+							url: '/chargebee/generate_checkout_new_url',
+							data: {
+								plan: "yearly"
+							},
+							method: 'POST'
+						})
+					},
+					success: function(hostedPageId) {
+						console.log('yearly', hostedPageId)
+					}
+				})
+			})
+
+			if ('#{user.subscription}' ? false : true) {
+				$('#subscription_modal').modal()
+			}
+		})
