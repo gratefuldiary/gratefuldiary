@@ -9,7 +9,7 @@ block content
 			<h2 class="mt-1 mb-4 font-italic"> #{quotes[Math.floor(Math.random() * quotes.length)]} </h2>
 
 		if typeof logs === "object" && logs.length > 0
-			<div class="row col-lg-12 mt-2 mx-0">
+			<div class="row col-lg-12 mt-2 mx-0 px-0">
 				each log in logs
 					<div class="card col-lg-12 mb-2">
 						| <i class="pt-2"> #{moment(log.created_at).from()}, you wrote: </i>

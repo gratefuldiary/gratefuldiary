@@ -9,7 +9,7 @@ router.post('/email', (req, res, next) => {
 
     const data = req.body || {}
 
-    console.log('Email: We have incoming', JSON.stringify(data))
+    // console.log('Email: We have incoming', JSON.stringify(data))
 
     try {
         const msg = data[0]

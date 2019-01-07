@@ -114,16 +114,16 @@ block content
 		  		site: "#{chargebee.site}"
 			})
 
-			chargebeeInstance.setPortalSession(() => {
-			  	return $.ajax({
-			    	url: '/chargebee/generate_portal_session',
-			    	method: 'POST'
-			  	})
-			})
-
-			let cbPortal = chargebeeInstance.createChargebeePortal()
-
 			$("#portal").on("click", () => {
+				chargebeeInstance.setPortalSession(() => {
+				  	return $.ajax({
+				    	url: '/chargebee/generate_portal_session',
+				    	method: 'POST'
+				  	})
+				})
+
+				let cbPortal = chargebeeInstance.createChargebeePortal()
+
 				cbPortal.open({
 				  	close() {
 				    	//close callbacks
