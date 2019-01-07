@@ -148,7 +148,7 @@ if (require.main === module) {
         .then((data) => {
             console.log('List of all inbound domains', data)
         })
-        .catch(err => {
+        .catch((err) => {
             console.log('Whoops! Something went wrong')
             console.log(err)
         })
@@ -172,18 +172,18 @@ if (require.main === module) {
     //     })
 
     client.relayWebhooks.create({
-            name: 'All incoming webhooks',
-            target: 'https://gratefuldiary-markable.fwd.wf/email',
-            match: {
-                // protocol: "SMTP",
-                domain: "www.gratefuldiary.co"
-            }
-        })
-        .then(data => {
+        name: 'All incoming webhooks',
+        target: 'https://gratefuldiary-markable.fwd.wf/email',
+        match: {
+            // protocol: "SMTP",
+            domain: "www.gratefuldiary.co",
+        },
+    })
+        .then((data) => {
             console.log('Created incoming webhook')
             console.log(data)
         })
-        .catch(err => {
+        .catch((err) => {
             console.log('Whoops! Something went wrong')
             console.log(err)
         })
