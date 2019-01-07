@@ -31,7 +31,6 @@ Account: https://gratefuldiary.co/account
 {{ if before }}
 ---
 {{before}}, you wrote:
-
 {{log}}
 ---
 {{ end }}

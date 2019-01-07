@@ -12,7 +12,7 @@ router.post(`/email/${webhook}`, (req, res, next) => {
 
     const data = req.body || {}
 
-    // console.log('Email: We have incoming', JSON.stringify(data))
+    console.log('Email: We have incoming')
 
     try {
         const msg = data[0]
@@ -27,7 +27,7 @@ router.post(`/email/${webhook}`, (req, res, next) => {
                 log.updated_at = utils.moment().toISOString()
                 // { text, email, _id }
 
-                console.log('LOG', log)
+                console.log('Email: LOG!')
 
                 services.Log.save(log)
                     .then((saved_log) => {
