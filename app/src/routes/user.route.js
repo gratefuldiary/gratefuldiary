@@ -108,7 +108,7 @@ router.get('/account', services.Middleware.secured(), (req, res) => {
 })
 
 router.get('/home', services.Middleware.secured(), (req, res) => {
-    res.render('users')
+    res.redirect('users')
 })
 
 export default router

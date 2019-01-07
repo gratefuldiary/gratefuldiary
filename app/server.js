@@ -173,7 +173,7 @@ app.locals.chargebee = config.chargebee
 
 app.get('/', (req, res) => {
     if (req.user) {
-        res.render('home')
+        res.redirect('home')
     } else {
         res.render('index')
     }
