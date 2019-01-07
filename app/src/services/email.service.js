@@ -68,7 +68,7 @@ const send = (user = {}, type = 'daily', log) => {
             html: templates[type].html,
         },
         recipients: [
-            { address: user.email || 'cggaurav@gmail.com' },
+            { address: user.email },
         ],
     })
 }
