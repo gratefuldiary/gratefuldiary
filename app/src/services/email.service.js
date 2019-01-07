@@ -61,7 +61,7 @@ const send = (user = {}, type = 'daily', log) => {
         },
         content: {
             from: {
-                email: config.env === 'production' ? [user.token || 'entry', '@gratefuldiary.co'].join('') : [user.token || 'entry', '@www.gratefuldiary.co'].join(''),
+                email: config.env === 'production' ? [user.token || 'entry', '@gratefuldiary.co'].join('') : [user.token || 'entry', '@test.gratefuldiary.co'].join(''),
                 name: 'Grateful Diary',
             },
             subject: config.env === 'production' ? templates[type].subject : ['TEST', templates[type].subject].join(':'),
@@ -132,7 +132,7 @@ if (require.main === module) {
     const log = debug('Email')
 
     log('KEY:', config.email.sparkpost.key)
-    send({first_name: 'x', token: 'asdfasdf'})
+    send({first_name: 'x', token: 'asdfasdf', email: 'cggaurav+gd@gmail.com'})
         .then((data) => {
             log("Sent?", data)
             // { results:
@@ -144,51 +144,8 @@ if (require.main === module) {
             log('Oopsie', err)
         })
 
-    client.inboundDomains.list()
-        .then((data) => {
-            console.log('List of all inbound domains', data)
-        })
-        .catch((err) => {
-            console.log('Whoops! Something went wrong')
-            console.log(err)
-        })
-
-    client.relayWebhooks.list()
-        .then((data) => {
-            console.log('List of all relayWebhooks', JSON.stringify(data))
-        })
-        .catch((err) => {
-            console.log('Whoops! Something went wrong')
-            console.log(err)
-        })
-
-    // client.relayWebhooks.delete('174881122451469151')
-    //     .then((data) => {
-    //         console.log('Deleted relaywebhook', data)
-    //     })
-    //     .catch(err => {
-    //         console.log('Whoops! Something went wrong')
-    //         console.log(err)
-    //     })
-
-    client.relayWebhooks.create({
-        name: 'All incoming webhooks',
-        target: 'https://gratefuldiary-markable.fwd.wf/email',
-        match: {
-            // protocol: "SMTP",
-            domain: "www.gratefuldiary.co",
-        },
-    })
-        .then((data) => {
-            console.log('Created incoming webhook')
-            console.log(data)
-        })
-        .catch((err) => {
-            console.log('Whoops! Something went wrong')
-            console.log(err)
-        })
-
-    const e = encrypt(`I am hopeful to push these udpates soon
+    // MORE: https://gist.github.com/0848fe8482d3416f1cbecb68cda452bf
+    let e = encrypt(`I am hopeful to push these udpates soon
         and what do I expect for new lines?
 
 
@@ -196,9 +153,5 @@ if (require.main === module) {
         and spaces?`)
     console.log(e)
     console.log(decrypt(e))
-
-    // e = encrypt('a@b.com', 'asdf asdf asdf asdf \n asdf asdf asdf asdf asdf asdf asdf asdf \n')
-    // console.log(e)
-    // console.log(decrypt('a@b.com', e))
 
 }
