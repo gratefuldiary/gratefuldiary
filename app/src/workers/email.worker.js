@@ -21,7 +21,7 @@ async function run () {
         if (diff >= 0 && diff <= 11 && user.config[day]) {
             const random_log = await services.Log.getRandom(user)
             await services.Email.send(user, 'daily', random_log)
-            console.log(`Sent email for ${user.email} at ${dateTimeToSend().fromNow()}, for ${diff} minutes`)
+            console.log(`Sent email for ${user.email} at ${dateTimeToSend.fromNow()}, for ${diff} minutes`)
         }
 
         if (index === users.length - 1) {
