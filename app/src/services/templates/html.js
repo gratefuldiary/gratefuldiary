@@ -5,17 +5,15 @@ module.exports = {
 
 <strong> What are you grateful for? </strong>
 
-To get started, simply reply for {{date}}.
-
-Only you can read what you write and there is no wrong way to do this.
+To get started, simply <italic>reply</italic> to this email for {{date}}.
 
 Gratitude comes in all styles & forms. This does not need to make you feel heavy to respond. Baby steps, if and when.
 
 <strong> Privacy </strong>
 
-Your information will never be shared or sold.
+Only you can read what you write and there is no wrong way to do this.
 
-Only you can view your entries. You can always reply to this email.
+Your information will never be shared or sold.
 
 ---
 
