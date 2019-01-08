@@ -28,7 +28,7 @@
         "connect-timeout": "^1.7.0",
         "cookie-parser": "~1.4.3",
         "cors": "^2.8.1",
-        "debug": "~2.2.0",
+        "debug": "~2.6.9",
         "email-reply-parser": "^1.0.20",
         "express": "^4.13.4",
         "express-session": "^1.15.6",
