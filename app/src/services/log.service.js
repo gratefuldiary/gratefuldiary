@@ -10,7 +10,7 @@ const LOGS_COLLECTION = 'logs'
 
 // NOTE: We encruypt and decrypt here before save/gets
 const save = (log) => {
-    log.text = services.Email.encrypt(log.text)
+    log.text = services.Encryption.encrypt(log.text)
 
     return connection.connect()
         .then(db => db.collection(LOGS_COLLECTION).insert(log))
@@ -29,7 +29,7 @@ const list = (user, limit = 100, skip = 0) => {
             .find({ email: user.email }).sort({ created_at: -1 }).limit(limit).skip(skip).toArray())
         .then((logs) => {
             return logs.map((log) => {
-                log.text = services.Email.decrypt(log.text)
+                log.text = services.Encryption.decrypt(log.text)
                 return log
             })
         })
