@@ -26,7 +26,7 @@ const save = (log) => {
 const list = (user, limit = 100, skip = 0) => {
     return connection.connect()
         .then(db => db.collection(LOGS_COLLECTION)
-            .find({ email: user.email }).sort({ created_at: -1 }).toArray())
+            .find({ email: user.email }).sort({ created_at: -1 }).limit(limit).skip(skip).toArray())
         .then((logs) => {
             return logs.map((log) => {
                 log.text = services.Email.decrypt(log.text)
