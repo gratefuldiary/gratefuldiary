@@ -24,7 +24,7 @@ Account: https://gratefuldiary.co/account
         subject: `Welcome to Grateful Diary, {{name}}`,
     },
     daily: {
-        html: `<p style="white-space: pre-line">Just reply to this email with your entry for {{date}}.
+        html: `<p style="white-space: pre-line">Just reply to this email for {{date}}.
 
 {{ if before }}
 ---
