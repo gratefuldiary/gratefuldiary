@@ -99,7 +99,7 @@ if (require.main === module) {
     const log = debug('Email')
 
     log('KEY:', config.email.sparkpost.key)
-    send({first_name: 'x', token: 'asdfasdf', email: 'cggaurav+gd@gmail.com'})
+    send({first_name: 'Gaurav', token: 'token_abc', email: 'gaurav@support.gratefuldiary.co'})
         .then((data) => {
             log("Sent?", data)
             // { results:
