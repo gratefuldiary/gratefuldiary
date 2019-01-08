@@ -44,7 +44,7 @@ if (require.main === module) {
 
     log('KEY:', config.email.sparkpost.key)
 
-    let e = encrypt(`I am hopeful to push these udpates soon
+    const e = encrypt(`I am hopeful to push these udpates soon
         and what do I expect for new lines?
 
 

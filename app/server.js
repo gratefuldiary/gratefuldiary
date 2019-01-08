@@ -64,6 +64,8 @@ const app = express()
 
 const sentry = require('@sentry/node')
 
+global.sentry = sentry
+
 sentry.init({ dsn: config.logging.sentry.key, environment: process.env.NODE_ENV })
 
 // ------------------------------

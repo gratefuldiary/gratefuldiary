@@ -88,7 +88,7 @@ const parseAttachment = (content) => {
 
 module.exports = {
     send,
-    getLog
+    getLog,
 }
 
 
