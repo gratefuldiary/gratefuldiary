@@ -39,11 +39,17 @@ router.post('/chargebee/generate_checkout_new_url', services.Middleware.secured(
 router.post(`/chargebee/webhook/${config.chargebee.webhook}`, async (req, res) => {
     const webhook = req.body
 
-    if (webhook && webhook.event_type && ['subscription_created', 'subscription_changed', 'subscription_cancelled', 'subscription_renewed', 'subscription_deleted'].includes(webhook.event_type)) {
-        const subscription = {...webhook.content.subscription}
-        const email = webhook.content.customer.id
-        console.log(`Subscription for ${email}`, subscription)
-        await services.User.updateSubscription({ email }, subscription)
+    // https://apidocs.chargebee.com/docs/api/events#event_types
+    if (webhook && webhook.event_type && webhook.event_type.includes('subscription_')) {
+
+        try {
+            const subscription = {...webhook.content.subscription}
+            const email = webhook.content.customer.id
+            console.log(`Subscription for ${email}`, subscription)
+            await services.User.updateSubscription({ email }, subscription)
+        } catch (err) {
+            sentry.captureException(err)
+        }
     }
     res.status(200).send()
 })
