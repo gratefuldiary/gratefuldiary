@@ -14,7 +14,8 @@
     "globals": {
         "Promise": true,
         "debug": true,
-        "pe": true
+        "pe": true,
+        "sentry": true,
     },
     "rules": {
         "array-callback-return": 1,
