@@ -69,6 +69,10 @@ a {
     cursor: pointer;
 }
 
+.small {
+    line-height: 1.3rem;
+}
+
 .container {
     margin-bottom: 200px;
     min-height: 100%;
