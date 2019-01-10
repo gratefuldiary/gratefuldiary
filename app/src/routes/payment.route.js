@@ -17,6 +17,8 @@ router.post("/chargebee/generate_portal_session", services.Middleware.secured(),
         customer: {
             id: req.user.email,
             email: req.user.email,
+            first_name: req.user.first_name,
+            last_name: req.user.last_name,
         },
     }).request()
     res.send(session.portal_session)
@@ -31,6 +33,8 @@ router.post('/chargebee/generate_checkout_new_url', services.Middleware.secured(
         customer: {
             email: req.user.email,
             id: req.user.email,
+            first_name: req.user.first_name,
+            last_name: req.user.last_name,
         },
     }).request()
     res.send(hp.hosted_page)
