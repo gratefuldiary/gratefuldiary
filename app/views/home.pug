@@ -27,7 +27,7 @@ block content
 
 	</div>
 
-	<div class="modal fade" id="subscription_modal" role="dialog">
+	<div class="modal fade" id="subscription_modal" role="dialog" data-backdrop="static" data-keyboard="false">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-body center">
@@ -55,13 +55,13 @@ block content
 						return $.ajax({
 							url: '/chargebee/generate_checkout_new_url',
 							data: {
-								plan: "quarterly"
+								plan: "quarterly-v1"
 							},
 							method: 'POST'
 						})
 					},
-					success: function(hostedPageId) {
-						console.log('quarterly', hostedPageId)
+					success: (hostedPageId) => {
+						// console.log('quarterly', hostedPageId)
 					}
 				})
 			})
@@ -73,13 +73,13 @@ block content
 						return $.ajax({
 							url: '/chargebee/generate_checkout_new_url',
 							data: {
-								plan: "yearly"
+								plan: "yearly-v1"
 							},
 							method: 'POST'
 						})
 					},
-					success: function(hostedPageId) {
-						console.log('yearly', hostedPageId)
+					success: (hostedPageId) => {
+						// console.log('yearly', hostedPageId)
 					}
 				})
 			})

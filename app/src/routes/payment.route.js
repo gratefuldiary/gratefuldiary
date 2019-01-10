@@ -28,7 +28,7 @@ router.post('/chargebee/generate_checkout_new_url', services.Middleware.secured(
     console.log('generate_checkout_new_url', req.user.email)
     const hp = await chargebee.hosted_page.checkout_new({
         subscription: {
-            plan_id: req.body.plan || "quarterly",
+            plan_id: req.body.plan || "quarterly-v1",
         },
         customer: {
             email: req.user.email,
