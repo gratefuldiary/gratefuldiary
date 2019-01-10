@@ -45,6 +45,7 @@ router.post(`/chargebee/webhook/${config.chargebee.webhook}`, async (req, res) =
 
     // https://apidocs.chargebee.com/docs/api/events#event_types
     if (webhook && webhook.event_type && webhook.event_type.includes('subscription_')) {
+        console.log('webhook', wehook)
         try {
             const subscription = {...webhook.content.subscription}
             const email = webhook.content.customer.id
@@ -56,6 +57,8 @@ router.post(`/chargebee/webhook/${config.chargebee.webhook}`, async (req, res) =
             sentry.captureException(err)
             res.status(400).send(err)
         }
+    } else {
+        res.status(403).send()
     }
 })
 
