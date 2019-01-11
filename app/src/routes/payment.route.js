@@ -58,7 +58,7 @@ router.post(`/chargebee/webhook/${config.chargebee.webhook}`, async (req, res) =
             res.status(400).send(err)
         }
     } else {
-        res.status(403).send()
+        res.status(200).send()
     }
 })
 
