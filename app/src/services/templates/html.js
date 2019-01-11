@@ -5,7 +5,7 @@ module.exports = {
 
 <strong> What are you grateful for? </strong>
 
-To get started, simply <italic>reply</italic> to this email for {{date}}.
+To get started, simply <italic>reply</italic> to this email.
 
 Gratitude comes in all styles & forms. This does not need to make you feel heavy to respond. Baby steps, if and when.
 
@@ -17,14 +17,14 @@ Your information will never be shared or sold.
 
 ---
 
-Home: https://gratefuldiary.co/home
+Previous entries: https://gratefuldiary.co/home
 Account: https://gratefuldiary.co/account
 
 </p>`,
         subject: `Welcome to Grateful Diary, {{name}}`,
     },
     daily: {
-        html: `<p style="white-space: pre-line">Just reply to this email for {{date}}.
+        html: `<p style="white-space: pre-line">Simply just reply to this email to write your gratitude entry.
 
 {{ if before }}
 ---
@@ -34,7 +34,7 @@ About {{before}}, you wrote:
 {{ end }}
 
 Grateful Diary: A diary to write down what you are grateful for, often and forever.
-Home: https://gratefuldiary.co/home
+Previous entries: https://gratefuldiary.co/home
 Account: https://gratefuldiary.co/account
 </p>`,
         subject: `What are you grateful for? {{date}}`,
