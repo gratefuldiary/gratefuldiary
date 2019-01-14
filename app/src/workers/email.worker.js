@@ -1,6 +1,7 @@
 import * as models from '../models'
 import * as services from '../services'
 import * as utils from '../utils'
+import mongoConnection from '../db/mongodb'
 
 const config = require('config')
 const sentry = require('@sentry/node')
@@ -9,6 +10,9 @@ sentry.init({ dsn: config.logging.sentry.key, environment: process.env.NODE_ENV 
 
 async function run () {
     // TODO: Optimize
+
+    // Connect first
+    await mongoConnection.connect()
     const users = await services.User.getByTimezone()
 
     users.forEach(async (user, index) => {
@@ -37,7 +41,7 @@ async function run () {
             setTimeout(() => {
                 console.log('We are done processing for all users.')
                 process.exit(0)
-            }, 1000)
+            }, 5000)
         }
     })
 
