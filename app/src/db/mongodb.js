@@ -15,17 +15,16 @@ module.exports = {
     connect: () => {
         return new Promise((resolve, reject) => {
             return MongoClient.connect(url, {
-                // autoReconnect: true,
-                // keepAlive: 1,
-                // poolSize: 1,
-                // reconnectTries: 2,
+                autoReconnect: true,
+                keepAlive: 1,
+                reconnectTries: 2
                 // sslValidate: false,
                 // connectTimeoutMS: 3 * 1000,
                 // socketTimeoutMS: 5 * 1000
                 // ssl: true,
             })
                 .then((db) => {
-                    console.log('Connected', url)
+                    console.log('Connected to mongodb.')
                     _db = db
                     return resolve(db)
                 })
