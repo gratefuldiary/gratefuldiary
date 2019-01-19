@@ -14,18 +14,20 @@ async function run () {
         const users = await services.User.getByTimezone()
 
         users.forEach(async (user, index) => {
-            const ampm = user.config.send_at.split(' ')[1]
-            const hour = user.config.send_at.split(' ')[0]
-            const timezone = user.config.timezone
+            const ampm = user.config.send_at.split(' ')[1] || 'pm'
+            const hour = user.config.send_at.split(' ')[0] || '08'
+            const timezone = user.config.timezone || 'America/New_York'
             const day = utils.moment_tz().tz(timezone).format('dddd').toLowerCase()
             const dateTimeToSend = utils.moment_tz.tz(`${utils.moment().format('YYYY-MM-DD')} ${hour} ${ampm}`, "YYYY-MM-DD hh A", timezone)
 
             const diff = dateTimeToSend.diff(utils.moment_tz().tz(timezone), 'minutes')
 
-            console.info(user.email, hour, ampm, timezone, dateTimeToSend.fromNow(), diff, day, user.config[day])
+            console.info(user.email, hour, ampm, timezone, dateTimeToSend.fromNow(),
+                utils.moment_tz().tz(timezone).fromNow(), diff, day, user.config[day])
 
-            // Same am/pm, and herokyu workers run every 10 minutes
-            if (diff >= 0 && diff <= 11 && user.config[day]) {
+            // Same am/pm, and herokyu workers run every 10 minutes, give it some leeway
+            if (diff >= 0 && diff <= 13 && user.config[day]) {
+                console.log(`In the process of sending email for ${user.email}...`)
                 try {
                     const random_log = await services.Log.getRandom(user)
                     await services.Email.send(user, 'daily', random_log)
@@ -38,9 +40,9 @@ async function run () {
             if (index === users.length - 1) {
                 console.log('We are done processing for all users.')
                 setTimeout(() => {
-                    console.log('Exiting....')
+                    console.log('Exiting successfully....')
                     process.exit(0)
-                }, 5000)
+                }, 3000)
             }
         })
 
