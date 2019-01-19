@@ -23,7 +23,7 @@ async function run () {
             const diff = dateTimeToSend.diff(utils.moment_tz().tz(timezone), 'minutes')
 
             console.info(user.email, hour, ampm, timezone, dateTimeToSend.fromNow(),
-                utils.moment_tz().tz(timezone).fromNow(), diff, day, user.config[day])
+                utils.moment_tz().tz(timezone).format(), diff, day, user.config[day])
 
             // Same am/pm, and herokyu workers run every 10 minutes, give it some leeway
             if (diff >= 0 && diff <= 13 && user.config[day]) {
