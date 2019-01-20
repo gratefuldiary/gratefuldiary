@@ -42,7 +42,7 @@ async function run () {
                 setTimeout(() => {
                     console.log('Exiting successfully....')
                     process.exit(0)
-                }, 3000)
+                }, 15 * 1000)
             }
         })
 
