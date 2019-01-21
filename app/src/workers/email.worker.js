@@ -20,13 +20,13 @@ async function run () {
             const day = utils.moment_tz().tz(timezone).format('dddd').toLowerCase()
             const dateTimeToSend = utils.moment_tz.tz(`${utils.moment_tz().tz(timezone).format('YYYY-MM-DD')} ${hour} ${ampm}`, "YYYY-MM-DD hh A", timezone)
 
-            const diff = dateTimeToSend.diff(utils.moment_tz().tz(timezone), 'minutes')
+            const diff = Math.abs(dateTimeToSend.diff(utils.moment_tz().tz(timezone), 'minutes'))
 
             console.info(user.email, hour, ampm, timezone, dateTimeToSend.fromNow(),
                 utils.moment_tz().tz(timezone).format(), diff, day, user.config[day])
 
             // Same am/pm, and herokyu workers run every 10 minutes, give it some leeway
-            if (diff >= 0 && diff <= 13 && user.config[day]) {
+            if (diff >= 0 && diff <= 15 && user.config[day]) {
                 console.log(`In the process of sending email for ${user.email}...`)
                 try {
                     const random_log = await services.Log.getRandom(user)
