@@ -18,7 +18,7 @@ async function run () {
             const hour = user.config.send_at.split(' ')[0] || '08'
             const timezone = user.config.timezone || 'America/New_York'
             const day = utils.moment_tz().tz(timezone).format('dddd').toLowerCase()
-            const dateTimeToSend = utils.moment_tz.tz(`${utils.moment().format('YYYY-MM-DD')} ${hour} ${ampm}`, "YYYY-MM-DD hh A", timezone)
+            const dateTimeToSend = utils.moment_tz.tz(`${utils.moment_tz().tz(timezone).format('YYYY-MM-DD')} ${hour} ${ampm}`, "YYYY-MM-DD hh A", timezone)
 
             const diff = dateTimeToSend.diff(utils.moment_tz().tz(timezone), 'minutes')
 
