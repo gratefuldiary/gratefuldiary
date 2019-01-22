@@ -24,6 +24,7 @@ const send = (user = {}, type = 'daily', log) => {
         },
         substitution_data: {
             name: user.first_name,
+            // utils.moment_tz().tz(timezone).format('MMM Do, YYYY')
             date: moment().format('MMM Do, YYYY'),
             before: log ? moment(log.created_at).fromNow() : null,
             log: log ? log.text : null,
