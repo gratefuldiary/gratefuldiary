@@ -8,6 +8,7 @@ const client = new SparkPost(config.email.sparkpost.key)
 const MailParser = require('mailparser').MailParser
 const ReplyParser = require('email-reply-parser') // https://github.com/crisp-im/email-reply-parser
 const templates = require('./templates/html')
+const models = require('../models')
 
 // https://www.sparkpost.com/docs/tech-resources/inbound-email-relay-webhook/#add-mx-records
 // RELAY: https://www.sparkpost.com/docs/tech-resources/inbound-email-relay-webhook/
@@ -16,22 +17,20 @@ const templates = require('./templates/html')
 // + https://github.com/SparkPost/node-sparkpost/tree/master/examples/relayWebhooks
 
 const send = (user = {}, type = 'daily', log) => {
-
     return client.transmissions.send({
         options: {
             open_tracking: true,
             click_tracking: true,
         },
         substitution_data: {
-            name: user.first_name,
-            // utils.moment_tz().tz(timezone).format('MMM Do, YYYY')
-            date: moment().format('MMM Do, YYYY'),
+            name: models.User.getFirstName(user),
+            date: models.User.getDayInTimezone(user),
             before: log ? moment(log.created_at).fromNow() : null,
             log: log ? log.text : null,
         },
         content: {
             from: {
-                email: config.env === 'production' ? [user.token || 'entry', '@gratefuldiary.co'].join('') : [user.token || 'entry', '@test.gratefuldiary.co'].join(''),
+                email: config.env === 'production' ? [models.User.getToken(user) || 'entry', '@gratefuldiary.co'].join('') : [models.User.getToken(user) || 'entry', '@test.gratefuldiary.co'].join(''),
                 name: 'Grateful Diary',
             },
             subject: config.env === 'production' ? templates[type].subject : ['TEST', templates[type].subject].join(':'),

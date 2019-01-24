@@ -1,4 +1,5 @@
 import schema from './schemas/user.schema'
+import * as utils from '../utils'
 
 const uuidv4 = require('uuid/v4')
 
@@ -67,6 +68,18 @@ User.transformBeforeSave = (user) => {
 
 User.getEmail = (user) => {
     return user.email || user.id
+}
+
+User.getDayInTimezone = (user) => {
+    return utils.moment_tz().tz(user.config.timezone || 'America/New_York').format('MMM Do, YYYY')
+}
+
+User.getFirstName = (user) => {
+    return user.first_name
+}
+
+User.getToken = (user) => {
+    return user.token
 }
 
 User.transformBeforeSend = (user) => {
