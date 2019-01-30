@@ -15,6 +15,10 @@ Only you can read what you write and there is no wrong way to do this.
 
 Your information will never be shared or sold.
 
+<strong> Important </strong>
+
+Its likely this email would have landed on your Updates folder. Mark this as important or just reply to not miss further prompts.
+
 ---
 
 Previous entries: https://gratefuldiary.co/home
