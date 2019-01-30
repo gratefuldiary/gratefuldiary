@@ -11,7 +11,7 @@ User.getConfig = (user, config) => {
     if (config) {
         return {
             timezone: config.timezone,
-            send_at: config.send_at ? config.send_at : '08 pm',
+            send_at: config.send_at ? config.send_at : '08 am',
             monday: config.monday === 'true',
             tuesday: config.tuesday === 'true',
             wednesday: config.wednesday === 'true',
