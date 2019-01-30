@@ -50,13 +50,12 @@ router.get('/users', services.Middleware.secured(), async (req, res, next) => {
     if (user) {
         // RETURNING USER
         res.locals.newuser = false
-        // console.log('NEW USER?', res.locals.newuser, user)
     } else {
         // NEW USER
         user = await services.User.save(req.user)
         await services.Email.send(user, 'welcome')
+        await services.Email.send(user, 'daily')
         res.locals.newuser = true
-        // console.log('NEW USER?', res.locals.newuser, user)
     }
 
     res.locals.logs = await services.Log.list(user)

@@ -10,9 +10,12 @@ block content
 
 		if typeof logs === "object" && logs.length > 0
 			<div class="row col-lg-12 mt-2 mx-0 px-0">
-				each log in logs
+				each log, index in logs
 					<div class="card col-lg-12 mb-2">
-						| <i class="pt-2"> #{moment(log.created_at).from()}, you wrote: </i>
+						if index <= 3
+							| <i class="pt-2"> <strong> #{moment(log.created_at).from()}</strong>, you wrote: </i>
+						else
+							| <i class="pt-2"> <strong> #{moment(log.created_at).format('Do MMM')}</strong>, you wrote: </i>
 						<!-- <div class="card-body my-0 pt-2" style="white-space: pre-line" -->
 						<div class="card-body my-0 pt-2">
 							| #{log.text}
@@ -22,7 +25,9 @@ block content
 		else
 			<div class="row col-lg-12 mt-2">
 				| <p> Welcome <i> #{user.first_name}</i>. &nbsp;</p> <br/>
-				| <p> We have sent you an email for you to get started. </p><span class="small"> Its likely that the email could land up in your <i> Updates </i> Folder. You might have to whitelist our domain with your mail app.</span>
+				| <p> Its likely that the email could land up in your <i> Updates </i> Folder. You might have to whitelist our domain in your mail app. </p>
+
+				| <p> To get started, just reply to the email we just sent you. 😃 </p>
 			</div>
 
 	</div>
@@ -85,6 +90,8 @@ block content
 			})
 
 			if ('#{user.subscription}' ? false : true) {
-				$('#subscription_modal').modal()
+				setTimeout(() => {
+					//- $('#subscription_modal').modal()
+				}, 3000)
 			}
 		})
