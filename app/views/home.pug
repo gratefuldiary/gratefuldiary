@@ -37,7 +37,7 @@ block content
 			<div class="modal-content">
 				<div class="modal-body center">
 					<p> Hey #{user.first_name}, thanks for being an early user 😃. </p>
-					<p> Use the coupon code "GAURAV" to get a 20% discount after a 15 day trial. If you feel this is not useful, I'd love to hear from you and will process a refund. </p>
+					<p> Use the coupon code "EARLYUSERS" to get the subscription free for a quarter. If you feel this is not useful, I'd love to hear from you and will process a refund. </p>
 					<button type="button" class="mx-2 btn btn-outline-primary btn-md" id="quarterly">Quarterly</button>
 					<button type="button" class="mx-2 btn btn-outline-primary btn-md" id="yearly">Yearly</button>
 				</div>
@@ -48,6 +48,7 @@ block content
 	script.
 
 		$(document).ready(() => {
+
 			/* Initialize a Chargebee instance after mounting the root component. */
 			let chargebeeInstance = Chargebee.init({
 				site: "#{chargebee.site}"
