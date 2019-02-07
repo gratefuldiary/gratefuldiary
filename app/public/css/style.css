@@ -18,6 +18,7 @@ body {
     height: 100%;
     min-height: 100%;
     font-family: 'Lora', sans-serif;
+    background-color: rgba(238, 238, 238, 0.7);
 }
 
 h1 {
@@ -58,8 +59,8 @@ label,
 .label,
 p,
 li {
-    font-size: 1.25rem;
-    line-height: 2.1rem;
+    font-size: 1.1rem;
+    line-height: 1.9rem;
     color: #0a0a0a;
 }
 

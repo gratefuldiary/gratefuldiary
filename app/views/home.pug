@@ -4,11 +4,10 @@ extends layout.pug
 block content
 
 	<div class="row mx-1">
-
-		if typeof quotes === "object" && quotes.length > 0
-			<h2 class="mt-1 mb-4 font-italic"> #{quotes[Math.floor(Math.random() * quotes.length)]} </h2>
-
 		if typeof logs === "object" && logs.length > 0
+			if typeof quotes === "object" && quotes.length > 0
+				<h2 class="mt-1 mb-4 font-italic"> #{quotes[Math.floor(Math.random() * quotes.length)]} </h2>
+
 			<div class="row col-lg-12 mt-2 mx-0 px-0">
 				each log, index in logs
 					<div class="card col-lg-12 mb-2">
@@ -29,6 +28,9 @@ block content
 
 				| <p> To get started, just reply to the email we just sent you. 😃 </p>
 			</div>
+			if typeof quotes === "object" && quotes.length > 0
+				<h2 class="mt-4 mb-4 font-italic"> #{quotes[Math.floor(Math.random() * quotes.length)]} </h2>
+
 
 	</div>
 
@@ -38,8 +40,8 @@ block content
 				<div class="modal-body center">
 					<p> Hey #{user.first_name}, thanks for being an early user 😃. </p>
 					<p> Use the coupon code "EARLYUSERS" to get the subscription free for a quarter. If you feel this is not useful, I'd love to hear from you and will process a refund. </p>
-					<button type="button" class="mx-2 btn btn-outline-primary btn-md" id="quarterly">Quarterly</button>
-					<button type="button" class="mx-2 btn btn-outline-primary btn-md" id="yearly">Yearly</button>
+					<button type="button" class="mx-2 btn btn-primary btn-md" id="quarterly">Quarterly</button>
+					<button type="button" class="mx-2 btn btn-primary btn-md" id="yearly">Yearly</button>
 				</div>
 			</div>
 		</div>
