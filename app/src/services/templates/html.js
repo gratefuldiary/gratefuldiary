@@ -28,14 +28,15 @@ Account: https://gratefuldiary.co/account
         subject: `Welcome to Grateful Diary, {{name}}`,
     },
     daily: {
-        html: `<p style="white-space: pre-line">Simply just reply to this email to write your gratitude entry.
-
+        html: `<p style="white-space: pre-line">
 {{ if before }}
 ---
 About {{before}}, you wrote:
 {{log}}
 ---
 {{ end }}
+
+Simply just reply to this email to write your gratitude entry.
 
 Grateful Diary: A diary to write down what you are grateful for, often and forever.
 Previous entries: https://gratefuldiary.co/home
